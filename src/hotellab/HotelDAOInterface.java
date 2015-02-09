@@ -10,9 +10,5 @@ import java.sql.SQLException;
 public interface HotelDAOInterface extends DAOInterface {
     public Hotel findHotelById(String hotelId) throws SQLException;
     
-    
-    
-//    
-//    public DB_Accessor getDb();
-//    public void setDb(DB_Accessor db);
+    public abstract void deleteHotel(Hotel hotel) throws SQLException;
 }

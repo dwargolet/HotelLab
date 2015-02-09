@@ -20,8 +20,8 @@ public abstract Map getRecordByID(String table, String primaryKey, Object keyVal
 
 //public abstract List<Object> retrieveRecord(String tableName)throws SQLException, Exception;
 
-public void updateRow()throws SQLException, Exception;
+//public void updateRow()throws SQLException, Exception;
 
-public void deleteRow()throws SQLException, Exception;
+public void deleteRecords(String table, String whereField, String whereVal )throws SQLException, Exception;
     
 }

@@ -42,6 +42,7 @@ public class DB_Mysql implements DB_Accessor {
 
     @Override
     public Map getRecordByID(String table, String primaryKey, Object keyValue) throws SQLException, Exception {
+        
         Statement stmt = null;
 	ResultSet rs = null;
 	ResultSetMetaData metaData = null;
@@ -90,14 +91,18 @@ public class DB_Mysql implements DB_Accessor {
 //        closeConnection();
 //    }
 
-    @Override
-    public void updateRow()throws SQLException, Exception {
-        
-        closeConnection();
-    }
+//    @Override
+//    public void updateRow()throws SQLException, Exception {
+//        
+//        closeConnection();
+//    }
 //
     @Override
-    public void deleteRow()throws SQLException, Exception {
+    public void deleteRecords(String table, String whereField, String whereVal)throws SQLException, Exception {
+        
+        PreparedStatement pstmt = null;
+        
+        
         
         closeConnection();
     }
@@ -109,8 +114,9 @@ public class DB_Mysql implements DB_Accessor {
             db.openConnection("com.microsoft.sqlserver.jdbc.SQLServerDriver", 
                     "jdbc:mysql://localhost:3306/hotel", 
                     "root", "admin");
-            
-            db.closeConnection();
+
+        
+        System.out.println(db.getRecordByID("HOTEL", "hotel_id", "123"));
     }
 
     

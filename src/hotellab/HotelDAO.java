@@ -65,8 +65,19 @@ public class HotelDAO implements HotelDAOInterface{
         
     }
     
-    
-    
+    @Override
+    public void deleteHotel(Hotel hotel) throws SQLException{
+        this.openDbConnection();
+        
+        try {
+            db.deleteRecords("Hotel", "hotel_id", hotel.getHotelId());
+        } catch (SQLException e1) {
+            throw new SQLException(e1.getMessage(), e1);
+
+        } catch (Exception e2) {
+            throw new SQLException(e2.getMessage(), e2);
+        }
+    }
 
     @Override
     public DB_Accessor getDb() {
