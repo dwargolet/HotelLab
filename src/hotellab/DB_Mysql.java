@@ -90,17 +90,17 @@ public class DB_Mysql implements DB_Accessor {
 //        closeConnection();
 //    }
 
-//    @Override
-//    public void updateRow()throws SQLException, Exception {
-//        
-//        closeConnection();
-//    }
+    @Override
+    public void updateRow()throws SQLException, Exception {
+        
+        closeConnection();
+    }
 //
-//    @Override
-//    public void deleteRow()throws SQLException, Exception {
-//        
-//        closeConnection();
-//    }
+    @Override
+    public void deleteRow()throws SQLException, Exception {
+        
+        closeConnection();
+    }
     
     
     //for testing

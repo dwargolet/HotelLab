@@ -100,7 +100,8 @@ public class Hotel {
 
     @Override
     public String toString() {
-        return "Hotel{" + "hotelId=" + hotelId + ", hotelName=" + hotelName + ", streetAddress=" + streetAddress + ", city=" + city + ", state=" + state + ", zip=" + zip + ", notes=" + notes + '}';
+        return "Hotel Data:" + "Id: " + hotelId + ", Name: " + hotelName + ", Address: " + streetAddress + ", city: " + city 
+                + ", state: " + state + ", zip: " + zip + ", notes: " + notes;
     }
     
     

@@ -57,13 +57,10 @@ public class HotelDAO implements HotelDAOInterface{
         h.setHotelName(r.get("hotel_name").toString());
         h.setStreetAddress(r.get("street_address").toString());
         h.setCity(r.get("city").toString());
-        h.setZip("postal_code");
+        h.setZip(r.get("postal_code").toString());
         
         
-        h.setState("state");
-//        Integer deptId = (Integer) rec.get("dept_id");
-//        employee.setDeptId(deptId);
-
+        h.setState(r.get("state").toString());
         return h;
         
     }
