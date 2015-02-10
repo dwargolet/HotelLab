@@ -11,12 +11,7 @@ public class DB_Mysql implements DB_Accessor {
 
     
     private Connection conn;    
-   // private final String URL_ERR_MSG = "Error: url is null or zero length!";
-    
-//    public DB_Mysql(){
-//        
-//    }
-//    
+  
     
     @Override
     public void openConnection(String driverName, String url, String username, String password)
@@ -182,15 +177,15 @@ public class DB_Mysql implements DB_Accessor {
     
     
     //for testing
-    public static void main(String[] args) throws Exception{
-        DB_Mysql db = new DB_Mysql();
-            db.openConnection("com.microsoft.sqlserver.jdbc.SQLServerDriver", 
-                    "jdbc:mysql://localhost:3306/hotel", 
-                    "root", "admin");
-
-        System.out.println(db.getRecords("hotel"));
-        //System.out.println(db.getRecordByID("HOTEL", "hotel_id", "123"));
-    }
+//    public static void main(String[] args) throws Exception{
+//        DB_Mysql db = new DB_Mysql();
+//            db.openConnection("com.microsoft.sqlserver.jdbc.SQLServerDriver", 
+//                    "jdbc:mysql://localhost:3306/hotel", 
+//                    "root", "admin");
+//
+//        System.out.println(db.getRecords("hotel"));
+//        //System.out.println(db.getRecordByID("HOTEL", "hotel_id", "123"));
+//    }
 
     
     
