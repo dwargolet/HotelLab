@@ -60,7 +60,7 @@ public class HotelDAO implements HotelDAOInterface{
     
     
     @Override
-    public List<Hotel> findAllHotels()throws SQLException, IllegalArgumentException, ClassNotFoundException{
+    public List<Hotel> findAllHotels(){
         db.openConnection(driver, url, username, password);
         List<Map<String, Object>> records = db.getRecords("hotel");
         List<Hotel>hotels = new ArrayList<>();
@@ -86,43 +86,26 @@ public class HotelDAO implements HotelDAOInterface{
     @Override
     public int insertHotelRecord(List<String> colNames, List values){
           
-        try{
-            db.openConnection(driver, url, username, password);
-        }catch(ClassNotFoundException e){
-            System.out.println("Class wasn't found");
-        }catch(SQLException e){
-            System.out.println("Couldn't open connection");
-        }    
+        db.openConnection(driver, url, username, password);    
         int updates = db.insertRecord("hotel", colNames, values);
         return updates;
     }
     
     
     @Override
-    public void deleteHotelRecord(Long pk) throws SQLException, IllegalArgumentException, ClassNotFoundException{
+    public int deleteHotelRecord(Long pk){
         db.openConnection(driver, url, username, password);
+        int updates = db.deleteRecord("Hotel", "hotel_id", pk);
         
-        try {
-            db.deleteRecord("Hotel", "hotel_id", pk);
-        } catch (SQLException e1) {
-            throw new SQLException(e1.getMessage(), e1);
-
-        } catch (Exception e2) {
-            throw new SQLException(e2.getMessage(), e2);
-        }
+        return updates;
     }
 
     @Override
-    public int updateHotelRecord(Long pk, String colNames, String values)throws SQLException, 
-            IllegalArgumentException, ClassNotFoundException{
+    public int updateHotelRecord(Long pk, String colNames, String values){
         
         int updates;
-        try{
-            db.openConnection(driver, url, username, password);
-            updates = db.updateRecord("hotel", "hotel_id", pk, colNames, values);
-        }catch(Exception e1){
-            throw new SQLException(e1.getMessage(),e1);
-        }
+        db.openConnection(driver, url, username, password);
+        updates = db.updateRecord("hotel", "hotel_id", pk, colNames, values);
    
         return updates;
     }
@@ -139,17 +122,17 @@ public class HotelDAO implements HotelDAOInterface{
     }
     
     
-    public static void main(String[] args) throws SQLException {
-        HotelDAO dao = new HotelDAO(new DB_Mysql());
-        
-        
-        //Hotel records = dao.findHotelById("123");
-
-        Hotel records = dao.updateHotelRecord(123, "state", "NY");
-        
-        System.out.println("Found Hotel records...\n");
-        System.out.println(records);
-    }
+//    public static void main(String[] args) throws SQLException {
+//        HotelDAO dao = new HotelDAO(new DB_Mysql());
+//        
+//        
+//        //Hotel records = dao.findHotelById("123");
+//
+//        Hotel records = dao.updateHotelRecord(123, "state", "NY");
+//        
+//        System.out.println("Found Hotel records...\n");
+//        System.out.println(records);
+//    }
     
     
 }

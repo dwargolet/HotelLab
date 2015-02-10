@@ -11,7 +11,7 @@ public class DB_Mysql implements DB_Accessor {
 
     
     private Connection conn;    
-    private final String URL_ERR_MSG = "Error: url is null or zero length!";
+   // private final String URL_ERR_MSG = "Error: url is null or zero length!";
     
     public DB_Mysql(){
         
@@ -20,7 +20,7 @@ public class DB_Mysql implements DB_Accessor {
     
     @Override
     public void openConnection(String driverClassName, String url, String username, String password)
-            throws IllegalArgumentException, SQLException {
+             {
                
         try{
             Class.forName (driverClassName);
@@ -41,13 +41,12 @@ public class DB_Mysql implements DB_Accessor {
     }
     
     @Override
-    public void closeConnection()throws SQLException {
+    public void closeConnection(){
         try{
             conn.close();
         }catch(SQLException e){
             System.out.println("Connection couldn't close");
         }
-        System.out.println("closed");
     }
 
 //    @Override
@@ -92,7 +91,7 @@ public class DB_Mysql implements DB_Accessor {
 //    }
     
     @Override
-    public List<Map<String, Object>> getRecords(String table) throws SQLException{
+    public List<Map<String, Object>> getRecords(String table){
         Statement stmt = null;
         ResultSet rs = null;
         ResultSetMetaData rsmd = null;
@@ -143,9 +142,7 @@ public class DB_Mysql implements DB_Accessor {
     }
 
     @Override
-    public int updateRecord(String table, String primaryKey, Long pk, String colName, Object value)
-            throws SQLException, Exception{
-        
+    public int updateRecord(String table, String primaryKey, Long pk, String colName, Object value){      
         PreparedStatement pstmt = null;
         int updates = 0;
         try{
@@ -163,7 +160,7 @@ public class DB_Mysql implements DB_Accessor {
     
     
     @Override
-    public int deleteRecord(String table, String primaryKey, Long pk)throws SQLException, Exception {
+    public int deleteRecord(String table, String primaryKey, Long pk){
         
         PreparedStatement pstmt = null;
         int updates = 0;
@@ -184,15 +181,15 @@ public class DB_Mysql implements DB_Accessor {
     
     
     //for testing
-    public static void main(String[] args) throws Exception{
-        DB_Mysql db = new DB_Mysql();
-            db.openConnection("com.microsoft.sqlserver.jdbc.SQLServerDriver", 
-                    "jdbc:mysql://localhost:3306/hotel", 
-                    "root", "admin");
-
-        
-        //System.out.println(db.getRecordByID("HOTEL", "hotel_id", "123"));
-    }
+//    public static void main(String[] args) throws Exception{
+//        DB_Mysql db = new DB_Mysql();
+//            db.openConnection("com.microsoft.sqlserver.jdbc.SQLServerDriver", 
+//                    "jdbc:mysql://localhost:3306/hotel", 
+//                    "root", "admin");
+//
+//        
+//        //System.out.println(db.getRecordByID("HOTEL", "hotel_id", "123"));
+//    }
 
     
     

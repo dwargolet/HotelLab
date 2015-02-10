@@ -15,6 +15,21 @@ public class Hotel {
     private String zip;
     private String notes;
 
+    public Hotel() {
+    }
+
+    public Hotel(Long hotelId, String hotelName, String streetAddress, String city, String state, String zip, String notes) {
+        this.hotelId = hotelId;
+        this.hotelName = hotelName;
+        this.streetAddress = streetAddress;
+        this.city = city;
+        this.state = state;
+        this.zip = zip;
+        this.notes = notes;
+    }
+
+    
+    
     public Long getHotelId() {
         return hotelId;
     }

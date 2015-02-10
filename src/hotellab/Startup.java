@@ -13,9 +13,15 @@ public class Startup {
 
         
         
+        HotelService hs = new HotelService();
         
+        hs.findAllHotels();
         
-        
+//        hs.updateHotelRecord();
+//        
+//        hs.insertHotelRecord();
+//        
+//        hs.deleteHotelRecord();
         
         
         

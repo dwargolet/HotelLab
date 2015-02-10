@@ -17,16 +17,16 @@ public class HotelService {
         dao = new HotelDAO();
     }
     
-    public void updateHotelRecord() throws SQLException, IllegalArgumentException, ClassNotFoundException{
+    public void updateHotelRecord(){
         dao.updateHotelRecord(new Long(123), "state", "NY");
     }
     
     
-    public void deleteHotelRecord() throws SQLException, IllegalArgumentException, ClassNotFoundException{
+    public void deleteHotelRecord(){
         dao.deleteHotelRecord(new Long(321));
     }
     
-    public void findAllHotels() throws SQLException, IllegalArgumentException, ClassNotFoundException{
+    public void findAllHotels(){
         List<Hotel>hotels = dao.findAllHotels();
         for(Hotel h : hotels){
             System.out.println(h);
