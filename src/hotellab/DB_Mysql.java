@@ -13,31 +13,27 @@ public class DB_Mysql implements DB_Accessor {
     private Connection conn;    
    // private final String URL_ERR_MSG = "Error: url is null or zero length!";
     
-    public DB_Mysql(){
-        
-    }
-    
+//    public DB_Mysql(){
+//        
+//    }
+//    
     
     @Override
-    public void openConnection(String driverClassName, String url, String username, String password)
+    public void openConnection(String driverName, String url, String username, String password)
              {
                
         try{
-            //Class.forName (driverClassName);
+            Class.forName (driverName);
             conn = DriverManager.getConnection(url, username, password);
-//        }catch(ClassNotFoundException e){
-//            System.out.println("Class wasn't found");
+        }catch(ClassNotFoundException e){
+            System.out.println("Class wasn't found");
         }catch(SQLException e){
           System.out.println("Couldn't open connection");
        }
         
         
 //        if(url == null || url.length() == 0)throw new IllegalArgumentException(URL_ERR_MSG);
-//        username = (username == null) ? "" : username;
-//	password = (password == null) ? "" : password;
-	
-        
-        System.out.println("Open");
+
     }
     
     @Override
@@ -127,9 +123,14 @@ public class DB_Mysql implements DB_Accessor {
         
         try{
             StringBuilder sql = new StringBuilder("INSERT INTO " + table + "(" );
+            for(int i = 0; i < colNames.size(); i++){
+                sql.append("" + colNames.get(i).toString() + ", ");
+            }
+            sql = new StringBuilder(sql.toString().substring(0, sql.lastIndexOf(", ")) + ") VALUES (");
             for(int i = 0; i < values.size(); i++){
-                sql.append("" + values.get(i).toString() + "', ");
-            }        
+                sql.append("'" + values.get(i).toString() + "', ");
+            }
+            
             String finalSQL = sql.toString().substring(0, sql.lastIndexOf(", ")) + ");";
             pstmt = conn.prepareStatement(finalSQL);
             updates = pstmt.executeUpdate();
@@ -146,7 +147,7 @@ public class DB_Mysql implements DB_Accessor {
         PreparedStatement pstmt = null;
         int updates = 0;
         try{
-            String sql = "UPDATE " + table + " SET " + colName + " = " + value + " WHERE " + primaryKey + " = " + pk;
+            String sql = "UPDATE " + table + " SET " + colName + " = '" + value + "' WHERE " + primaryKey + " = " + pk;
             pstmt = conn.prepareStatement(sql);
             updates = pstmt.executeUpdate();
                                     

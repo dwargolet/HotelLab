@@ -23,7 +23,7 @@ public class HotelService {
     
     
     public void deleteHotelRecord(){
-        dao.deleteHotelRecord(new Long(321));
+        dao.deleteHotelRecord(new Long(125));
     }
     
     public void findAllHotels(){

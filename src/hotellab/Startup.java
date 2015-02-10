@@ -1,5 +1,7 @@
 package hotellab;
 
+import java.sql.SQLException;
+
 /**
  *
  * @author dworgolet
@@ -9,7 +11,7 @@ public class Startup {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws SQLException{
 
         
         
@@ -19,10 +21,14 @@ public class Startup {
         
 //        hs.updateHotelRecord();
 //        
+//        hs.findAllHotels();
+//        
 //        hs.insertHotelRecord();
 //        
-//        hs.deleteHotelRecord();
-        
+//        hs.findAllHotels();
+//        
+        hs.deleteHotelRecord();
+        hs.findAllHotels();
         
         
         
