@@ -17,7 +17,7 @@ public class HotelDBAccessFactory {
         String s = null;
         Character seperator = File.separatorChar;
         
-        File file = new File("src" + seperator + "cfg" + seperator + "config.properties");
+        File file = new File("src" + seperator + "config" + seperator + "config.properties");
         Properties p = new Properties();
         FileInputStream in;
         
@@ -39,7 +39,7 @@ public class HotelDBAccessFactory {
         String s = null;
         Character seperator = File.separatorChar;
         
-        File file = new File("src" + seperator + "cfg" + seperator + "config.properties");
+        File file = new File("src" + seperator + "config" + seperator + "config.properties");
         Properties p = new Properties();
         FileInputStream in;
         
@@ -61,7 +61,7 @@ public class HotelDBAccessFactory {
         String s = null;
         Character seperator = File.separatorChar;
         
-        File file = new File("src" + seperator + "cfg" + seperator + "config.properties");
+        File file = new File("src" + seperator + "config" + seperator + "config.properties");
         Properties p = new Properties();
         FileInputStream in;
         
@@ -83,7 +83,7 @@ public class HotelDBAccessFactory {
         String s = null;
         Character seperator = File.separatorChar;
         
-        File file = new File("src" + seperator + "cfg" + seperator + "config.properties");
+        File file = new File("src" + seperator + "config" + seperator + "config.properties");
         Properties p = new Properties();
         FileInputStream in;
         

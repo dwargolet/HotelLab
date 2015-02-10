@@ -17,10 +17,10 @@ public class HotelDAO implements HotelDAOInterface{
     private String username;       
     private String password;
             
-    public HotelDAO() {
-    }
+//    public HotelDAO() {
+//    }
     
-    public HotelDAO(DB_Accessor db) {
+    public HotelDAO() {
         db = new DB_Mysql();
         driver = HotelDBAccessFactory.getDriver();
         url = HotelDBAccessFactory.getUrl();
@@ -61,11 +61,16 @@ public class HotelDAO implements HotelDAOInterface{
     
     @Override
     public List<Hotel> findAllHotels(){
-        db.openConnection(driver, url, username, password);
+       // db.openConnection(driver, url, username, password);
+        db.openConnection("com.microsoft.sqlserver.jdbc.SQLServerDriver", 
+                    "jdbc:mysql://localhost:3306/hotel", 
+                    "root", "admin");
+        
         List<Map<String, Object>> records = db.getRecords("hotel");
         List<Hotel>hotels = new ArrayList<>();
         Hotel h = null;
         for(Map m : records){
+            h = new Hotel();
             h.setHotelId(new Long(m.get("hotel_id").toString()));
             h.setHotelName(m.get("hotel_name").toString());
             h.setStreetAddress(m.get("street_address").toString());
@@ -123,15 +128,18 @@ public class HotelDAO implements HotelDAOInterface{
     
     
 //    public static void main(String[] args) throws SQLException {
-//        HotelDAO dao = new HotelDAO(new DB_Mysql());
+//        HotelDAO dao = new HotelDAO();
 //        
 //        
-//        //Hotel records = dao.findHotelById("123");
+//        
 //
-//        Hotel records = dao.updateHotelRecord(123, "state", "NY");
+//        
+//        //List<Hotel> records = dao.findAllHotels();
 //        
 //        System.out.println("Found Hotel records...\n");
 //        System.out.println(records);
+//        
+//       
 //    }
     
     

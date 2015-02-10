@@ -23,13 +23,13 @@ public class DB_Mysql implements DB_Accessor {
              {
                
         try{
-            Class.forName (driverClassName);
+            //Class.forName (driverClassName);
             conn = DriverManager.getConnection(url, username, password);
-        }catch(ClassNotFoundException e){
-            System.out.println("Class wasn't found");
+//        }catch(ClassNotFoundException e){
+//            System.out.println("Class wasn't found");
         }catch(SQLException e){
-            System.out.println("Couldn't open connection");
-        }
+          System.out.println("Couldn't open connection");
+       }
         
         
 //        if(url == null || url.length() == 0)throw new IllegalArgumentException(URL_ERR_MSG);
@@ -181,15 +181,15 @@ public class DB_Mysql implements DB_Accessor {
     
     
     //for testing
-//    public static void main(String[] args) throws Exception{
-//        DB_Mysql db = new DB_Mysql();
-//            db.openConnection("com.microsoft.sqlserver.jdbc.SQLServerDriver", 
-//                    "jdbc:mysql://localhost:3306/hotel", 
-//                    "root", "admin");
-//
-//        
-//        //System.out.println(db.getRecordByID("HOTEL", "hotel_id", "123"));
-//    }
+    public static void main(String[] args) throws Exception{
+        DB_Mysql db = new DB_Mysql();
+            db.openConnection("com.microsoft.sqlserver.jdbc.SQLServerDriver", 
+                    "jdbc:mysql://localhost:3306/hotel", 
+                    "root", "admin");
+
+        System.out.println(db.getRecords("hotel"));
+        //System.out.println(db.getRecordByID("HOTEL", "hotel_id", "123"));
+    }
 
     
     
