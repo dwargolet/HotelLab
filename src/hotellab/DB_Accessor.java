@@ -10,18 +10,17 @@ import java.util.*;
  */
 public interface DB_Accessor {
 
-public void openConnection(String driverClassName, String url, String username, String password)
+public abstract void openConnection(String driverClassName, String url, String username, String password)
         throws IllegalArgumentException, ClassNotFoundException, SQLException;
 
-public void closeConnection()throws SQLException;
+public abstract void closeConnection()throws SQLException;
 
-public abstract Map getRecordByID(String table, String primaryKey, Object keyValue)
-	throws SQLException, Exception;
+public abstract List<Map<String, Object>> getRecords(String table) throws SQLException, Exception;
 
-//public abstract List<Object> retrieveRecord(String tableName)throws SQLException, Exception;
+public abstract int insertRecord(String table, List<String> colNames, List values);
 
-//public void updateRow()throws SQLException, Exception;
+public abstract int updateRecord(String table, String primaryKey, int pk, String colName, Object value)throws SQLException, Exception;
 
-public void deleteRecords(String table, String whereField, String whereVal )throws SQLException, Exception;
+public abstract int deleteRecord(String table, String primaryKey, int pk)throws SQLException, Exception;
     
 }
