@@ -28,21 +28,6 @@ public class HotelDAO implements HotelDAOInterface{
         password = HotelDBAccessFactory.getPassword();
     }
     
-//    private void openDbConnection() throws SQLException {
-//        try {
-//            db.openConnection("com.microsoft.sqlserver.jdbc.SQLServerDriver", 
-//                    "jdbc:mysql://localhost:3306/hotel", 
-//                    "root", "admin");
-//            System.out.println("DAO open");
-//        } catch (IllegalArgumentException ex) {
-//            throw new SQLException(ex.getMessage(), ex);
-//        } catch (ClassNotFoundException ex) {
-//            throw new SQLException(ex.getMessage(), ex);
-//        } catch (SQLException ex) {
-//            throw new SQLException(ex.getMessage(), ex);
-//        }
-//    }
-    
     
     
 //    @Override
@@ -73,8 +58,33 @@ public class HotelDAO implements HotelDAOInterface{
 //        
 //    }
     
+    
     @Override
-    public Long insertHotelRecord(List<String> colNames, List values){
+    public List<Hotel> findAllHotels()throws SQLException, IllegalArgumentException, ClassNotFoundException{
+        db.openConnection(driver, url, username, password);
+        List<Map<String, Object>> records = db.getRecords("hotel");
+        List<Hotel>hotels = new ArrayList<>();
+        Hotel h = null;
+        for(Map m : records){
+            h.setHotelId(new Long(m.get("hotel_id").toString()));
+            h.setHotelName(m.get("hotel_name").toString());
+            h.setStreetAddress(m.get("street_address").toString());
+            h.setCity(m.get("city").toString());
+            h.setZip(m.get("postal_code").toString());
+            String s = "";
+            try{
+                s = m.get("notes").toString();
+            }catch(NullPointerException e){
+                s = "";
+            }
+            h.setNotes(s);
+            hotels.add(h);
+        }
+        return hotels;
+    }
+    
+    @Override
+    public int insertHotelRecord(List<String> colNames, List values){
           
         try{
             db.openConnection(driver, url, username, password);
@@ -83,7 +93,7 @@ public class HotelDAO implements HotelDAOInterface{
         }catch(SQLException e){
             System.out.println("Couldn't open connection");
         }    
-        long updates = db.insertRecord("hotel", colNames, values);
+        int updates = db.insertRecord("hotel", colNames, values);
         return updates;
     }
     

@@ -92,7 +92,7 @@ public class DB_Mysql implements DB_Accessor {
 //    }
     
     @Override
-    public List<Map<String, Object>> getRecords(String table) throws SQLException, Exception{
+    public List<Map<String, Object>> getRecords(String table) throws SQLException{
         Statement stmt = null;
         ResultSet rs = null;
         ResultSetMetaData rsmd = null;
@@ -141,14 +141,6 @@ public class DB_Mysql implements DB_Accessor {
         }
         return updates;
     }
-//    @Override
-//    public List<Object> retrieveRecord(String tableName) throws SQLException, Exception {
-//       
-//        
-//        return List<Object>;
-//        
-//        closeConnection();
-//    }
 
     @Override
     public int updateRecord(String table, String primaryKey, Long pk, String colName, Object value)
