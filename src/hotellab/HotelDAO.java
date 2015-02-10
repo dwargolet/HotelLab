@@ -11,13 +11,18 @@ public class HotelDAO implements HotelDAOInterface{
 
     
     private DB_Accessor db;
-    
-    
+    private String url;
+    private String driver;
+    private String username;       
+    private String password;
+            
     public HotelDAO() {
     }
     
     public HotelDAO(DB_Accessor db) {
         this.db = db;
+        db = new DB_Mysql();
+        driver =
     }
     
     private void openDbConnection() throws SQLException {
@@ -38,13 +43,13 @@ public class HotelDAO implements HotelDAOInterface{
     
     
     @Override
-    public Hotel findHotelById(String hotelId) throws SQLException{
+    public Hotel findHotelById(Long hotelId) throws SQLException{
         this.openDbConnection();
         
         Map r;
         
         try {
-            r = db.getRecordByID("HOTEL", "HOTEL_ID", new Long(hotelId));
+            r = db.getRecordById("HOTEL", "HOTEL_ID", hotelId);
         } catch (SQLException e1) {
             throw new SQLException(e1.getMessage(), e1);
 
@@ -66,11 +71,17 @@ public class HotelDAO implements HotelDAOInterface{
     }
     
     @Override
+    public Long insertHotelRecord(List<String> colNames, List values){
+        
+    }
+    
+    
+    @Override
     public void deleteHotel(Hotel hotel) throws SQLException{
         this.openDbConnection();
         
         try {
-            db.deleteRecords("Hotel", "hotel_id", hotel.getHotelId());
+            db.deleteRecord("Hotel", "hotel_id", hotel.getHotelId());
         } catch (SQLException e1) {
             throw new SQLException(e1.getMessage(), e1);
 

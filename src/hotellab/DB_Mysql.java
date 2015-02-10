@@ -21,9 +21,7 @@ public class DB_Mysql implements DB_Accessor {
     @Override
     public void openConnection(String driverClassName, String url, String username, String password)
             throws IllegalArgumentException, SQLException {
-        
-        
-        
+               
         try{
             Class.forName (driverClassName);
             conn = DriverManager.getConnection(url, username, password);
@@ -153,7 +151,7 @@ public class DB_Mysql implements DB_Accessor {
 //    }
 
     @Override
-    public int updateRecord(String table, String primaryKey, int pk, String colName, Object value)
+    public int updateRecord(String table, String primaryKey, Long pk, String colName, Object value)
             throws SQLException, Exception{
         
         PreparedStatement pstmt = null;
@@ -173,7 +171,7 @@ public class DB_Mysql implements DB_Accessor {
     
     
     @Override
-    public int deleteRecord(String table, String primaryKey, int pk)throws SQLException, Exception {
+    public int deleteRecord(String table, String primaryKey, Long pk)throws SQLException, Exception {
         
         PreparedStatement pstmt = null;
         int updates = 0;
